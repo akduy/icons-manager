@@ -5,7 +5,6 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "IconDictionary", menuName = "IconDictionary", order = 0)]
 public class IconDictionary : ScriptableObject
 {
     [Serializable]
@@ -23,7 +22,6 @@ public class IconDictionary : ScriptableObject
         }
     }
 
-
     public static IconDictionary Instance
     {
         get
@@ -39,6 +37,9 @@ public class IconDictionary : ScriptableObject
             return _instance;
         }
     }
+
+    public List<IconKeyValue> IconList { get => _list; }
+
     static IconDictionary _instance;
     static bool _lock;
 
@@ -61,6 +62,22 @@ public class IconDictionary : ScriptableObject
         AssetDatabase.SaveAssets();
     }
 
+    public Texture2D GetIconByID(IconList requestID)
+    {
+        var result = _list.FirstOrDefault(item => item.ID == requestID.ToString());
+        return result != null ? result.icon : null;
+    }
+
+    [ContextMenu("Clean list")]
+    void CleanList()
+    {
+        for (int i = 0; i < _list.Count; i++)
+        {
+            if (_list[i].icon == null)
+                _list.Remove(_list[i]);
+        }
+    }
+
     [ContextMenu("Clear list")]
     void ResetData()
     {
@@ -72,5 +89,10 @@ public class IconDictionary : ScriptableObject
     {
         _lock = !_lock;
         hideFlags = _lock ? HideFlags.NotEditable : HideFlags.None;
+    }
+
+    void OnValidate()
+    {
+        CleanList();
     }
 }
