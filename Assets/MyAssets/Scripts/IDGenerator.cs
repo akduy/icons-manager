@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public static class IDGenerator
@@ -11,6 +12,13 @@ public static class IDGenerator
             var number = Random.Range(48, 57);
             var upperChar = Random.Range(65, 90);
             var lowerChar = Random.Range(97, 122);
+
+            if (i == 0)
+            {
+                result += Random.value < 0.5f ? (char)upperChar : (char)lowerChar;
+                // Debug.Log($"first char: {result}");
+                continue;
+            }
 
             var rd = Random.value;
             if (rd < 0.333f)
