@@ -29,7 +29,8 @@ public class IconDictionary : ScriptableObject
             if (_instance == null)
             {
 #if UNITY_EDITOR
-                _instance = (IconDictionary)AssetDatabase.LoadAssetAtPath("Assets/MyAssets/ScriptableAssets/IconDictionaryAsset.asset", typeof(IconDictionary));
+                Debug.Log(Config.IconDictionaryAssetPath);
+                _instance = (IconDictionary)AssetDatabase.LoadAssetAtPath(Config.IconDictionaryAssetPath, typeof(IconDictionary));
 #else
                 _instance = Resources.FindObjectsOfTypeAll<IconDictionary>().FirstOrDefault();
 #endif
