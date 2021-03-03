@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911622b74d2490e42a0e7948c427a3a0, type: 3}
   m_Name: Config
   m_EditorClassIdentifier: 
+  _path: Assets/MyAssets/Resources/IconDictionaryAsset.asset

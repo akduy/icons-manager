@@ -5,8 +5,16 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class Config : ScriptableObject
 {
-    const string IconDictionaryAssetName = "IconDictionaryAsset.asset";
+    [SerializeField] string _path;
     public static string IconDictionaryAssetPath;
+    const string IconDictionaryAssetName = "IconDictionaryAsset.asset";
+    const string key = "ConfigPathKey";
+
+    void OnEnable()
+    {
+        IconDictionaryAssetPath = PlayerPrefs.GetString(key, "Path is Empty");
+        _path = IconDictionaryAssetPath;
+    }
 
     [MenuItem("HID/Config Path")]
     public static void ConfigPath()
@@ -15,6 +23,14 @@ public class Config : ScriptableObject
 
         var tr = str.IndexOf("Assets");
         IconDictionaryAssetPath = str.Substring(tr) + "/" + IconDictionaryAssetName;
-        Debug.Log($"IconDictionaryPath = {IconDictionaryAssetPath}");
+        // Debug.Log($"IconDictionaryPath = {IconDictionaryAssetPath}");
+
+        PlayerPrefs.SetString(key, IconDictionaryAssetPath);
+        PlayerPrefs.Save();
+    }
+
+    void OnValidate()
+    {
+        _path = IconDictionaryAssetPath;
     }
 }

@@ -28,12 +28,12 @@ public class IconDictionary : ScriptableObject
         {
             if (_instance == null)
             {
-#if UNITY_EDITOR
+// #if UNITY_EDITOR
                 Debug.Log(Config.IconDictionaryAssetPath);
-                _instance = (IconDictionary)AssetDatabase.LoadAssetAtPath(Config.IconDictionaryAssetPath, typeof(IconDictionary));
-#else
+//                 _instance = (IconDictionary)AssetDatabase.LoadAssetAtPath(Config.IconDictionaryAssetPath, typeof(IconDictionary));
+// #else
                 _instance = Resources.FindObjectsOfTypeAll<IconDictionary>().FirstOrDefault();
-#endif
+// #endif
             }
             return _instance;
         }
@@ -65,6 +65,9 @@ public class IconDictionary : ScriptableObject
 
     public Texture2D GetIconByID(IconList requestID)
     {
+        if (_list == null)
+            return null;
+            
         var result = _list.FirstOrDefault(item => item.ID == requestID.ToString());
         return result != null ? result.icon : null;
     }
