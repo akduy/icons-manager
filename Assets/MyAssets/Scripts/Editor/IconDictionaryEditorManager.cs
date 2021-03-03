@@ -14,7 +14,6 @@ public static class IconDictionaryEditorManager
     [MenuItem("HID/Create Dictionary")]
     public static void CreateDictionary()
     {
-        Debug.Log((Config.IconDictionaryAssetPath));
         AssetDatabase.CreateAsset(IconDictionary.CreateInstance("IconDictionary"),
             Config.IconDictionaryAssetPath);
         EditorGUIUtility.PingObject(IconDictionary.Instance);

@@ -15,6 +15,7 @@ public class IconAttachment : MonoBehaviour
 
     void OnValidate()
     {
-        // iconTexture = IconDictionary.Instance.GetIconByID(iconID);
+        if (IconDictionary.Instance != null)
+            iconTexture = IconDictionary.Instance.GetIconByID(iconID);
     }
 }

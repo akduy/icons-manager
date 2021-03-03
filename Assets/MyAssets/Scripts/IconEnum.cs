@@ -1,9 +1,12 @@
 public enum IconList
 {
-	d477CWE7,
-	fmcxyW57,
-	FnLr4f1V,
-	TcLX4MCA,
-	Ces01bKu,
-	u78D55bK,
+	E8tJk2i8,
+	P4SNn7cY,
+	xTK5Ln7W,
+	yR0Uf6i4,
+	ng3Ji6wo,
+	sEv44u6m,
+	xOj78ni6,
+	E0MMgM0B,
+	IcPq6vSC,
 }

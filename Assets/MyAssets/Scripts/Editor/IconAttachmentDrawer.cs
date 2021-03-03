@@ -29,7 +29,9 @@ class IconTextureDrawer : PropertyDrawer
         // content.x = content.width + 100;
 
         EditorGUI.indentLevel = 0;
-        var texture = IconDictionary.Instance.GetIconByID(iconAttachment.iconID);
+        Texture2D texture = null;
+        if (IconDictionary.Instance != null)
+            texture = IconDictionary.Instance.GetIconByID(iconAttachment.iconID);
         if (texture)
         {
             content.yMin = 50;
