@@ -11,9 +11,9 @@ public class IconDictionary : ScriptableObject
     public class IconKeyValue
     {
         public string ID;
-        public Texture2D icon;
+        public Sprite icon;
 
-        public IconKeyValue(Texture2D newIcon)
+        public IconKeyValue(Sprite newIcon)
         {
             icon = newIcon;
             ID = IDGenerator.Get(8);
@@ -22,22 +22,21 @@ public class IconDictionary : ScriptableObject
         }
     }
 
-    public static IconDictionary Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
+//     public static IconDictionary Instance
+//     {
+//         get
+//         {
+//             if (_instance == null)
+//             {
 // #if UNITY_EDITOR
-                Debug.Log(Config.IconDictionaryAssetPath);
-//                 _instance = (IconDictionary)AssetDatabase.LoadAssetAtPath(Config.IconDictionaryAssetPath, typeof(IconDictionary));
-// #else
-                _instance = Resources.FindObjectsOfTypeAll<IconDictionary>().FirstOrDefault();
+//                 Debug.Log(Config.IconDictionaryAssetPath);
+//                 //                 _instance = (IconDictionary)AssetDatabase.LoadAssetAtPath(Config.IconDictionaryAssetPath, typeof(IconDictionary));
+//                 _instance = Resources.FindObjectsOfTypeAll<IconDictionary>().FirstOrDefault();
 // #endif
-            }
-            return _instance;
-        }
-    }
+//             }
+//             return _instance;
+//         }
+//     }
 
     public List<IconKeyValue> IconList { get => _list; }
 
@@ -46,7 +45,8 @@ public class IconDictionary : ScriptableObject
 
     [SerializeField] List<IconKeyValue> _list;
 
-    public void RegisterIcon(Texture2D icon)
+#if UNITY_EDITOR
+    public void RegisterIcon(Sprite icon)
     {
         if (_list == null)
             _list = new List<IconKeyValue>();
@@ -59,15 +59,15 @@ public class IconDictionary : ScriptableObject
 
         _list.Add(new IconKeyValue(icon));
 
-        EditorUtility.SetDirty(IconDictionary.Instance);
+        // EditorUtility.SetDirty(IconDictionary.Instance);
         AssetDatabase.SaveAssets();
     }
+#endif
 
-    public Texture2D GetIconByID(IconList requestID)
+    public Sprite GetIconByID(IconEnum requestID)
     {
         if (_list == null)
             return null;
-            
         var result = _list.FirstOrDefault(item => item.ID == requestID.ToString());
         return result != null ? result.icon : null;
     }

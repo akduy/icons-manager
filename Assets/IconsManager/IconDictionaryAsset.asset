@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 911622b74d2490e42a0e7948c427a3a0, type: 3}
-  m_Name: Config
+  m_Script: {fileID: 11500000, guid: 47ec6b729facf024da3cea308e325dc7, type: 3}
+  m_Name: IconDictionaryAsset
   m_EditorClassIdentifier: 
-  _path: Assets/MyAssets/Resources/IconDictionaryAsset.asset
+  _list: []
